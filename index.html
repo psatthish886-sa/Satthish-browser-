@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Satthish Browser</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#10131a;
+  color:white;
+  min-height:100vh;
+}
+
+.header{
+  background:#171b24;
+  padding:14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.logo{
+  width:42px;
+  height:42px;
+  background:#ffffff;
+  color:#111827;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  font-weight:bold;
+}
+
+.title{
+  font-size:20px;
+  font-weight:bold;
+}
+
+.search-box{
+  padding:15px;
+  background:#0d1016;
+}
+
+.search{
+  display:flex;
+  gap:8px;
+}
+
+input{
+  flex:1;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #3b4250;
+  background:#202631;
+  color:white;
+  font-size:16px;
+  outline:none;
+}
+
+button{
+  border:0;
+  border-radius:12px;
+  padding:12px 16px;
+  background:#4f46e5;
+  color:white;
+  font-size:15px;
+  font-weight:bold;
+}
+
+.quick{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:12px 15px;
+}
+
+.quick button{
+  white-space:nowrap;
+  background:#252b36;
+}
+
+.welcome{
+  text-align:center;
+  padding:55px 20px;
+}
+
+.big-logo{
+  font-size:80px;
+  font-weight:bold;
+  color:#6366f1;
+}
+
+.welcome h1{
+  margin:10px 0;
+  font-size:30px;
+}
+
+.welcome p{
+  color:#aab1bf;
+  font-size:15px;
+  line-height:1.5;
+}
+
+.footer{
+  text-align:center;
+  color:#777f8f;
+  padding:25px;
+  font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="logo">S</div>
+  <div class="title">Satthish Browser</div>
+</div>
+
+<div class="search-box">
+  <form class="search" onsubmit="searchWeb(event)">
+    <input id="searchInput"
+           type="text"
+           placeholder="Search Google or enter website">
+    <button type="submit">Search</button>
+  </form>
+</div>
+
+<div class="quick">
+  <button onclick="openSite('https://www.google.com')">Google</button>
+  <button onclick="openSite('https://www.youtube.com')">YouTube</button>
+  <button onclick="openSite('https://www.wikipedia.org')">Wikipedia</button>
+  <button onclick="openSite('https://github.com')">GitHub</button>
+</div>
+
+<div class="welcome">
+  <div class="big-logo">S</div>
+  <h1>Satthish Browser</h1>
+  <p>
+    Fast and simple web browsing experience.
+    <br>
+    Search Google or enter any website above.
+  </p>
+</div>
+
+<div class="footer">
+  © 2026 Satthish Browser
+</div>
+
+<script>
+
+function searchWeb(event){
+  event.preventDefault();
+
+  let text = document.getElementById("searchInput").value.trim();
+
+  if(text === ""){
+    return;
+  }
+
+  let url;
+
+  if(text.startsWith("http://") || text.startsWith("https://")){
+    url = text;
+  }
+  else if(text.includes(".") && !text.includes(" ")){
+    url = "https://" + text;
+  }
+  else{
+    url = "https://www.google.com/search?q=" +
+          encodeURIComponent(text);
+  }
+
+  window.location.href = url;
+}
+
+function openSite(url){
+  window.location.href = url;
+}
+
+</script>
+
+</body>
+</html>
